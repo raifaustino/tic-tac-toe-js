@@ -20,6 +20,44 @@ const winningMessageTextElement = document.querySelector(
 
 const restartButton = document.getElementById("restartButton");
 
+let boardColorInput = document.querySelector("#boardColorInput");
+let boardColor = document.querySelector("#board");
+
+let xColorInput = document.querySelector("#xColorInput");
+let oColorInput = document.querySelector("#oColorInput");
+
+let boardColorChange = boardColorInput.addEventListener("input", () => {
+  let color = boardColorInput.value;
+  boardColor.style.backgroundColor = color;
+  console.log("mudou a cor do fundo");
+  console.log(color);
+});
+
+let xColorChange = xColorInput.addEventListener("input", () => {
+  let color = xColorInput.value;
+
+  [...cellElements].forEach(function (cell) {
+    if (cell.classList.contains(X_CLASS)) {
+      cell.style.setProperty("--x-color", color);
+    }
+  });
+
+  console.log("mudou a cor do X");
+  console.log(color);
+});
+
+let oColorChange = oColorInput.addEventListener("input", () => {
+  let color = oColorInput.value;
+  [...cellElements].forEach(function (cell) {
+    if (cell.classList.contains(O_CLASS)) {
+      cell.style.setProperty("--o-color", color);
+    }
+  });
+
+  console.log("mudou a cor do O");
+  console.log(color);
+});
+
 let oTurn;
 
 const setBoardHoverClass = () => {
@@ -48,8 +86,9 @@ restartButton.addEventListener("click", startGame);
 function handleClick(e) {
   const cell = e.target;
   const currentClass = oTurn ? O_CLASS : X_CLASS;
+  const colorUpdate = oTurn ? oColorInput.value : xColorInput.value;
 
-  placeMark(cell, currentClass);
+  placeMark(cell, currentClass, colorUpdate);
 
   //Checkforwin
   if (checkWin(currentClass)) {
@@ -77,8 +116,13 @@ function isDraw() {
   });
 }
 
-const placeMark = (cell, currentClass) => {
+const placeMark = (cell, currentClass, colorUpdate) => {
   cell.classList.add(currentClass);
+  oTurn
+    ? cell.style.setProperty("--o-color", colorUpdate)
+    : cell.style.setProperty("--x-color", colorUpdate);
+  console.log(oTurn);
+  console.log(colorUpdate);
 };
 
 const switchTurns = () => {
