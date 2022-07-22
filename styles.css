@@ -38,7 +38,7 @@ body {
 .cell {
   width: var(--cell-size);
   height: var(--cell-size);
-  border: 1px solid black;
+  border: 3px solid white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,7 +79,7 @@ body {
 
 .cell.x::before,
 .cell.x::after {
-  background-color: black;
+  background-color: red;
 }
 .board.x .cell:not(.x):not(.o):hover::before,
 .board.x .cell:not(.x):not(.o):hover::after {
@@ -108,19 +108,19 @@ body {
 /* desenhando o */
 
 .cell.o::before {
-  background-color: black;
+  background-color: transparent;
 }
 
 .cell.o::after {
-  background-color: white;
+  background-color: transparent;
 }
 
 .board.o .cell:not(.x):not(.o):hover::before {
-  background-color: lightgray;
+  background-color: transparent;
 }
 
 .board.o .cell:not(.x):not(.o):hover::after {
-  background-color: white;
+  background-color: transparent;
 }
 
 .cell.o::before,
@@ -130,6 +130,7 @@ body {
   content: "";
   position: absolute;
   border-radius: 50%;
+  border: 10px solid orange;
 }
 
 .cell.o::before,
@@ -139,8 +140,8 @@ body {
 }
 .cell.o::after,
 .board.o .cell:not(.x):not(.o):hover::after {
-  width: calc(var(--mark-size) * 0.7);
-  height: calc(var(--mark-size) * 0.7);
+  width: calc(var(--mark-size) * 0.9);
+  height: calc(var(--mark-size) * 0.9);
 }
 
 .winning-message {
