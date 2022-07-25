@@ -109,20 +109,10 @@ body {
 
 /* desenhando o */
 
-.cell.o::before {
-  background-color: transparent;
-}
-
+.cell.o::before,
 .cell.o::after {
   background-color: transparent;
-}
-
-.board.o .cell:not(.x):not(.o):hover::before {
-  border: lightgray;
-}
-
-.board.o .cell:not(.x):not(.o):hover::after {
-  border: lightgray;
+  border: 10px solid var(--o-color);
 }
 
 .cell.o::before,
@@ -132,7 +122,11 @@ body {
   content: "";
   position: absolute;
   border-radius: 50%;
-  border: 10px solid var(--o-color);
+}
+
+.board.o .cell:not(.x):not(.o):hover::after,
+.board.o .cell:not(.x):not(.o):hover::before {
+  border: 10px solid lightgray;
 }
 
 .cell.o::before,
